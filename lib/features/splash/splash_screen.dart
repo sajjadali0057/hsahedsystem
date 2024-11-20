@@ -20,8 +20,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void checkUser(context)async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    String token =  preferences.getString('token')!;
-    if (token == ''){
+    String? token =  preferences.getString('token');
+    if (token == null || token.isEmpty){
       Future.delayed(const Duration(seconds: 2),(){
         Navigator.pushNamedAndRemoveUntil(context, LoginScreen.routeName, (route)=>false);
       });
